@@ -1,0 +1,20 @@
+### Default route (asynchronous processing test)
+GET http://localhost:5256/?secure=true
+Accept: application/json
+
+### HTTPS Enforcement Test
+GET http://localhost:5256/?secure=true&authenticated=true
+Accept: application/json
+
+### Unauthorized Access Test
+GET http://localhost:5256/?secure=true&input=<script>
+Accept: application/json
+
+### Access Denied estt
+GET http://localhost:5256/?secure=true
+Accept: application/json
+
+### Security Event Log Test
+
+
+
