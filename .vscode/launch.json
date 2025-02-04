@@ -1,3 +1,4 @@
+// filepath: /.vscode/launch.json
 {
     "version": "0.2.0",
     "configurations": [
@@ -20,7 +21,11 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             },
-            "dotnetRunMessages": true
+            "justMyCode": false,
+            "symbolOptions": {
+                "searchMicrosoftSymbolServer": true,
+                "searchNuGetSymbolServer": true
+            }
         }
     ]
 }

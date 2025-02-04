@@ -5,6 +5,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <Optimize>false</Optimize>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <DebugType>portable</DebugType> <!-- Change this line -->
+    <DebugSymbols>true</DebugSymbols>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>

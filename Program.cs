@@ -9,10 +9,32 @@ var builder = WebApplication.CreateBuilder(args);
 // Configure to listen on HTTP only for simplicity
 builder.WebHost.ConfigureKestrel(options =>
 {
+    options.Limits.KeepAliveTimeout = System.Threading.Timeout.InfiniteTimeSpan;
+    options.Limits.RequestHeadersTimeout = System.Threading.Timeout.InfiniteTimeSpan;
     options.ListenLocalhost(5294); // HTTP only
 });
 
 var app = builder.Build();
+
+/* Here's a bunch of stuff to explore. - Mike, 20250203
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+*/
 
 // Middleware to log security events if response status indicates an issue
 app.Use(async (context, next) =>
@@ -34,6 +56,10 @@ app.Use(async (context, next) =>
         context.Response.StatusCode = 400;
         await context.Response.WriteAsync("Simulated HTTPS Required");
         return;
+    }
+    else
+    {
+        Console.WriteLine("HTTPS is enforced");
     }
 
     await next();
